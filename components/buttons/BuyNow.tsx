@@ -81,7 +81,7 @@ const BuyNow: FC<Props> = ({
       tokenId={tokenId}
       collectionId={collectionId}
       orderId={orderId}
-      referrer={'0xd2f6BF9e792DbBCA466D93bCC5a939e2D1c72B2B'}
+      referrer={'0xA2b8E073eA72E4b1b29C0A4E383138ABde571870'}
       referrerFeeBps={100}
       onClose={(data, stepData, currentStep) => {
         if (mutate && currentStep == BuyStep.Complete) mutate();
