@@ -108,6 +108,7 @@ const CollectionPage: NextPage<Props> = ({ id, ssr }) => {
   })
 
   let collection = collections && collections[0]
+  let collectionlength = collections.length
 
   let tokenQuery: Parameters<typeof useDynamicTokens>['0'] = {
     limit: 20,
@@ -294,7 +295,7 @@ const CollectionPage: NextPage<Props> = ({ id, ssr }) => {
                 </Box>
               </Flex>
               {/* Collection Dropdown goes here  */}
-              {!isSmallDevice &&
+              {!isSmallDevice && collectionlength >1 &&
                 <Flex align={'center'} justify={'start'}>
                   <CollectionDropdown />
                 </Flex>}
@@ -309,7 +310,7 @@ const CollectionPage: NextPage<Props> = ({ id, ssr }) => {
             <CollectionActions collection={collection} />
           </Flex>
 
-          {isSmallDevice &&
+          {isSmallDevice && collectionlength >1 &&
             <Flex justify={'start'} css={{paddingBottom:'$2'}}>
               <CollectionDropdown />
             </Flex>
@@ -787,8 +788,8 @@ export const getStaticProps: GetStaticProps<{
 
   if (
     collection &&
-    collection.collections?.[0].contractKind === 'erc1155' &&
-    Number(collection?.collections?.[0].tokenCount) === 1 &&
+    collection.collections?.at(0)?.contractKind === 'erc1155' &&
+    Number(collection.collections?.at(0)?.tokenCount) === 1 &&
     tokens?.tokens?.[0].token?.tokenId !== undefined
   ) {
     return {
@@ -798,19 +799,6 @@ export const getStaticProps: GetStaticProps<{
       },
     }
   }
-  // else if (
-  //   collection &&
-  //   collection.collections?.[0].contractKind === 'erc1155' &&
-  //   Number(collection?.collections?.[0].tokenCount) === 1 &&
-  //   showTokens?.tokens?.[0].token?.tokenId !== undefined
-  // ) {
-  //   return {
-  //     redirect: {
-  //       destination: `/collection/${routePrefix}/${id}/${tokens.tokens[0].token.tokenId}`,
-  //       permanent: false,
-  //     },
-  //   }
-  // }
 
   return {
     props: { ssr: { collection, tokens, hasAttributes }, id },
