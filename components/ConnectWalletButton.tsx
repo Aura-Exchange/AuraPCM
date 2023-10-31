@@ -11,7 +11,6 @@ export const ConnectWalletButton: FC<Props> = () => {
     <ConnectButton.Custom>
       {({ account, chain, openConnectModal, mounted }) => {
         va.track('Connect Wallet');
-        openConnectModal();
         return (
           <Box
             style={{

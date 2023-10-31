@@ -24,7 +24,7 @@ const IndexPage: NextPage<Props> = ({ ssr }) => {
   const [sortByTime, setSortByTime] =
     useState<CollectionsSortingOption>('1DayVolume')
   const marketplaceChain = useMarketplaceChain()
-  //const { isDisconnected } = useAccount()
+  const { isDisconnected } = useAccount()
   const {push} = useRouter()
 
   let collectionQuery: Parameters<typeof useCollections>['0'] = {
@@ -72,7 +72,7 @@ const IndexPage: NextPage<Props> = ({ ssr }) => {
 
 
   return (
-    <><p></p></>
+    <><p>resrt</p></>
   )
 }
 
